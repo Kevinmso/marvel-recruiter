@@ -25,3 +25,4 @@ Regras não-negociáveis do projeto. Código ou decisão que viole isto deve ser
 ## Qualidade
 - **C-13**: Toda fórmula de jogo em `game/` DEVE ter cobertura de teste unitário antes de ser considerada concluída.
 - **C-14**: Mudanças que contradigam esta constituição DEVEM atualizar este arquivo explicitamente, não só o código.
+- **C-15**: Qualquer função que envolva sorteio/aleatoriedade (chance de sucesso RF-13, sorteio de pacote RF-17) DEVE receber a fonte de aleatoriedade como parâmetro (injetável) — NÃO DEVE chamar um gerador global (`Random.nextInt()` direto, etc.) internamente. Isso é obrigatório pra permitir testes determinísticos (seed fixa nos testes).

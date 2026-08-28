@@ -37,6 +37,6 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [ ] T-24: Tela de Perfil do herói (wiki)
 
 ## Fase 5 — Polimento
-- [ ] T-25: Calibrar constantes (k, α, β, γ, custo de pacote, constante de cooldown) jogando de verdade
-- [ ] T-26: Completar roster de arcos curados (faltam ~10-15 além dos 5 já testados)
+- [ ] T-25: Calibrar constantes (k, α, β, γ, custo de pacote, constante de cooldown — valores iniciais em spec.md) jogando de verdade
+- [ ] T-26: Completar roster de personagens e arcos curados em `specs/roster.md`, depois atualizar `specs/constantes-normalizacao.md` com os valores finais
 - [ ] T-27: Revisão manual de issues com nome/idioma estrangeiro na curadoria final

@@ -7,6 +7,8 @@ Trabalho de curso técnico — app Android (Kotlin + Jetpack Compose) tipo "mana
 @specs/constitution.md
 @specs/spec.md
 @specs/plan.md
+@specs/constantes-normalizacao.md
+@specs/roster.md
 
 ## Como trabalhar aqui
 
