@@ -21,7 +21,7 @@ App Android (Compose) ──HTTPS──► Comic Vine API (só no seed, RF-01)
 | Serialização | kotlinx.serialization |
 | Persistência | Room |
 | Imagens | Coil |
-| DI | Hilt ou Koin — escolher um antes de começar (decisão de time, ambos atendem) |
+| DI | **Koin** (BOM) — Kotlin puro, sem geração de código; escolhido em T-03 por menor boilerplate e build mais leve num projeto pequeno |
 
 ## Identidade do app
 - **Package name**: `com.marvel.recruiter`

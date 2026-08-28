@@ -5,7 +5,7 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 ## Fase 0 — Setup
 - [x] T-01: Criar projeto Android (Compose), configurar Gradle com as libs de plan.md
 - [x] T-02: Configurar `local.properties` + `BuildConfig` pra API key (constitution.md C-09)
-- [ ] T-03: Escolher e configurar DI (Hilt ou Koin — plan.md)
+- [x] T-03: Escolher e configurar DI (Koin — ver plan.md)
 
 ## Fase 1 — Dados locais (Room)
 - [ ] T-04: Criar entidades Room: `Character`, `CharacterTeam`, `CharacterFriend`, `StoryArc`, `CharacterUnlock`, `GameState`, `UserRoster`, `Mission`, `MissionResult`, `MissionResultHero` (schema em plan.md)
