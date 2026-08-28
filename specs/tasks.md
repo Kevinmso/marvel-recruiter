@@ -3,7 +3,7 @@
 Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um agente de IA implementar (uma tarefa por vez, não o arquivo inteiro de uma vez).
 
 ## Fase 0 — Setup
-- [ ] T-01: Criar projeto Android (Compose), configurar Gradle com as libs de plan.md
+- [x] T-01: Criar projeto Android (Compose), configurar Gradle com as libs de plan.md
 - [ ] T-02: Configurar `local.properties` + `BuildConfig` pra API key (constitution.md C-09)
 - [ ] T-03: Escolher e configurar DI (Hilt ou Koin — plan.md)
 
