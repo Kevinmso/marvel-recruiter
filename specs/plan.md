@@ -106,13 +106,26 @@ COMIC_VINE_API_KEY=...
 
 ```kotlin
 // build.gradle.kts (app)
+import java.util.Properties
+
+// O Gradle não carrega local.properties sozinho — precisa ler o arquivo na mão.
+// Fallback pra variável de ambiente (COMIC_VINE_API_KEY) pra permitir CI sem local.properties.
+val comicVineApiKey: String = Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}.getProperty("COMIC_VINE_API_KEY")
+    ?: System.getenv("COMIC_VINE_API_KEY")
+    ?: ""
+
 android {
     buildFeatures { buildConfig = true }
     defaultConfig {
-        buildConfigField("String", "COMIC_VINE_API_KEY", "\"${project.findProperty("COMIC_VINE_API_KEY")}\"")
+        buildConfigField("String", "COMIC_VINE_API_KEY", "\"$comicVineApiKey\"")
     }
 }
 ```
+
+Se a key estiver ausente, `BuildConfig.COMIC_VINE_API_KEY` fica `""` — a build passa, mas o seed (RF-01) falha em runtime e cai na tela de erro (RF-20). Não quebrar a build por falta de key é proposital: permite `./gradlew build` em CI e clonar o repo sem configurar nada pra rodar os testes de `game/`.
 
 ## Testes
 - `game/`: JUnit puro (sem Android) — cobre RF-04 a RF-19.

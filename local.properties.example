@@ -1,0 +1,9 @@
+# Modelo de local.properties — copie pra `local.properties` e preencha.
+# `local.properties` é gitignored e NÃO deve ser commitado (constitution.md C-09).
+
+# Caminho do Android SDK (o Android Studio costuma preencher sozinho).
+sdk.dir=/caminho/para/o/Android/Sdk
+
+# Chave da API da Comic Vine — https://comicvine.gamespot.com/api/
+# Sem ela a build passa, mas o seed inicial (RF-01) falha e cai na tela de erro (RF-20).
+COMIC_VINE_API_KEY=

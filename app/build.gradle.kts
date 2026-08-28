@@ -1,9 +1,21 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
 }
+
+// API key da Comic Vine — NUNCA commitada (constitution.md C-09).
+// O Gradle não carrega local.properties sozinho; leitura manual aqui.
+// Fallback pra env var permite build em CI sem local.properties.
+val comicVineApiKey: String = Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}.getProperty("COMIC_VINE_API_KEY")
+    ?: System.getenv("COMIC_VINE_API_KEY")
+    ?: ""
 
 android {
     namespace = "com.marvel.recruiter"
@@ -19,6 +31,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "COMIC_VINE_API_KEY", "\"$comicVineApiKey\"")
     }
 
     buildTypes {
@@ -34,6 +48,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
