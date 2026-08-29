@@ -28,7 +28,8 @@ Trabalho de curso técnico — app Android (Kotlin + Jetpack Compose) tipo "mana
 
 - Pacote `game/`: lógica pura de jogo (fórmulas de specs/spec.md). NÃO importar nada de `android.*` aqui — precisa compilar e rodar teste sem emulador.
 - DTOs de rede e entidades Room usam `kotlinx.serialization` — nunca Gson/Moshi (specs/constitution.md C-07).
-- Nomes de variável nas fórmulas seguem a notação de specs/spec.md (`ForçaTime`, `Dificuldade`, `Poder_ajustado` etc.) — facilita rastrear qual trecho de código implementa qual RF-XX.
+- **Todo identificador de código é em inglês** (variáveis, funções, colunas de tabela, propriedades). A prosa dos specs continua em pt-BR.
+- As fórmulas do spec.md têm um nome pt (notação matemática) e um identificador en (código). O spec.md traz os dois lado a lado — ex: `Poder_ajustado` → `adjustedPower`, `ForçaTime` → `teamStrength`, `Dificuldade` → `difficulty`. Use o nome en no código; ele preserva a rastreabilidade pro RF-XX.
 
 ## O que não fazer
 

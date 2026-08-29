@@ -53,68 +53,72 @@ Validado contra chamadas reais à Comic Vine (5 personagens + 2 arcos do roster 
 
 Toda FK leva `@Index` (o Room exige) e `onDelete = CASCADE`. As tabelas N:N usam `@Entity(primaryKeys = [...])` (PK composta).
 
+Identificadores em inglês (CLAUDE.md). Notação snake_case aqui; as `@Entity` usam a versão camelCase da mesma propriedade (ex: `adjusted_power` ↔ `adjustedPower`), sem `@ColumnInfo`.
+
 ```
-── CATÁLOGO (imutável; PK = cv_id) ─────────────────────────────
+── CATÁLOGO (imutável; PK = cvId) ──────────────────────────────
 
 team
-  cv_id  (PK), name
+  cvId (PK), name
 
 character
-  cv_id (PK), name, real_name?, deck?, aliases?, image_url?
-  num_powers        -- p bruto, RF-04 (display/debug)
-  num_appearances   -- x bruto, RF-05 (display/debug)
-  poder_ajustado    -- RF-07 final (usado no ForçaTime)
-  veterania         -- RF-05 (ForçaTime + sorteio de pacote RF-17)
+  cvId (PK), name, realName?, deck?, aliases?, imageUrl?
+  numPowers          -- p bruto, RF-04 (display/debug)
+  numAppearances     -- x bruto, RF-05 (display/debug)
+  adjustedPower      -- RF-07 final (usado no teamStrength)
+  veterancy          -- RF-05 (teamStrength + sorteio de pacote RF-17)
 
-character_team
-  character_cv_id (FK→character), team_cv_id (FK→team)
-  PK(character_cv_id, team_cv_id)
+characterTeam
+  characterCvId (FK→character), teamCvId (FK→team)
+  PK(characterCvId, teamCvId)
 
-character_synergy               -- pares de amizade, NÃO-direcionado (B_sin)
-  low_cv_id (FK→character), high_cv_id (FK→character)   -- invariante: low < high
-  PK(low_cv_id, high_cv_id)
+characterSynergy               -- pares de amizade, NÃO-direcionado (synergyBonus)
+  lowCvId (FK→character), highCvId (FK→character)   -- invariante: low < high
+  PK(lowCvId, highCvId)
   -- seed: par {A,B} só se AMBOS estão no roster curado E A lista B ou B lista A
   --       em character_friends; grava normalizado (min,max), dedup
 
-story_arc
-  cv_id (PK), name, deck?
-  num_issues   -- y limpo (pós-curadoria manual)
-  dificuldade  -- RF-11, congelada (C-08)
+storyArc
+  cvId (PK), name, deck?
+  numIssues    -- y limpo (pós-curadoria manual)
+  difficulty   -- RF-11, congelada (C-08)
 
-character_unlock               -- RF-19, resolvido no seed p/ os 24
-  character_cv_id (FK→character), arc_cv_id (FK→story_arc)
-  PK(character_cv_id, arc_cv_id)
+characterUnlock               -- RF-19, resolvido no seed p/ os 24
+  characterCvId (FK→character), arcCvId (FK→storyArc)
+  PK(characterCvId, arcCvId)
 
-seed_meta                      -- RF-03: grava os limites usados no seed
-  key (PK), value   -- p_min, p_max, x_min, x_max, y_min, y_max, gamma, seeded_at
+seedMeta                      -- RF-03: grava os limites usados no seed
+  key (PK), value   -- pMin, pMax, xMin, xMax, yMin, yMax, gamma, seededAt
 
 ── SAVE-STATE (mutável; surrogate PK) ──────────────────────────
 
-game_state                     -- linha única, criada no onCreate do Room
+gameState                     -- linha única, criada no onCreate do Room
   id (PK = 1)
-  moeda_balance   -- inicial 300 (RF-21)
-  xp_total        -- inicial 0   (RF-21, placar vitalício)
-  seed_completed  -- inicial false (RF-01/RF-20: marcador de seed concluído)
+  coinBalance     -- inicial 300 (RF-21)
+  xpTotal         -- inicial 0   (RF-21, placar vitalício)
+  seedCompleted   -- inicial false (RF-01/RF-20: marcador de seed concluído)
 
-user_roster
-  id (PK auto), character_cv_id (FK→character, UNIQUE)
-  available_at    -- epoch millis; <= now ⇒ disponível (RF-15). default 0
-  recruited_at    -- epoch millis, ordenação Tela 1
+userRoster
+  id (PK auto), characterCvId (FK→character, UNIQUE)
+  availableAt     -- epoch millis; <= now ⇒ disponível (RF-15). default 0
+  recruitedAt     -- epoch millis, ordenação Tela 1
 
-mission_result
-  id (PK auto), arc_cv_id (FK→story_arc)
-  forca_time, dificuldade, chance   -- snapshots (Double)
-  roll_value                        -- o sorteio de RF-13
-  sucesso                           -- Boolean
-  xp_ganho, moeda_ganha             -- Int, roundToInt (RF-14)
-  created_at
+missionResult
+  id (PK auto), arcCvId (FK→storyArc)
+  teamStrength, difficulty, chance   -- snapshots (Double)
+  rollValue                          -- o sorteio de RF-13
+  success                            -- Boolean
+  xpEarned, coinsEarned              -- Int, roundToInt (RF-14)
+  createdAt
 
-mission_result_hero
-  mission_result_id (FK→mission_result), character_cv_id (FK→character)
-  PK(mission_result_id, character_cv_id)
+missionResultHero
+  missionResultId (FK→missionResult), characterCvId (FK→character)
+  PK(missionResultId, characterCvId)
 ```
 
-Tipos: ids `Long`; `moeda_balance`/`xp_*`/recompensas `Int`; `poder_ajustado`/`veterania`/`dificuldade`/`chance`/`forca_time` `Double`; `sucesso`/`seed_completed` `Boolean`; timestamps `Long` (epoch millis).
+Nomes de tabela (`@Entity(tableName=...)`): `team`, `character`, `character_team`, `character_synergy`, `story_arc`, `character_unlock`, `seed_meta`, `game_state`, `user_roster`, `mission_result`, `mission_result_hero`.
+
+Tipos: ids `Long`; `coinBalance`/`xp*`/recompensas `Int`; `adjustedPower`/`veterancy`/`difficulty`/`chance`/`teamStrength` `Double`; `success`/`seedCompleted` `Boolean`; timestamps `Long` (epoch millis).
 
 **Sem tabela `mission`**: "missão" é 1:1 com `story_arc`; missão desbloqueada é query derivada (`story_arc ∩ character_unlock ∩ user_roster`).
 

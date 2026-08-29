@@ -10,6 +10,20 @@ App mobile "manager" onde o jogador recruta personagens da Marvel (dados da Comi
 
 ## Requisitos funcionais
 
+### Notação ↔ identificadores de código
+As fórmulas abaixo usam notação matemática em pt. No código, use o identificador en correspondente (CLAUDE.md → "Convenções de código"):
+
+| Fórmula (pt) | Código (en) | | Fórmula (pt) | Código (en) |
+|---|---|---|---|---|
+| `Poder` | `power` | | `ForçaTime` | `teamStrength` |
+| `Poder_compensado` | `compensatedPower` | | `B_sin` | `synergyBonus` |
+| `Poder_ajustado` | `adjustedPower` | | `B_fac` | `factionBonus` |
+| `Veterania` | `veterancy` | | `Dificuldade` | `difficulty` |
+| `p_min`/`p_max` | `pMin`/`pMax` | | `m` (multiplicador) | `rewardMultiplier` |
+| `x_min`/`x_max` | `xMin`/`xMax` | | `Moeda` (saldo / ganho) | `coinBalance` / `coinsEarned` |
+| `y_min`/`y_max` | `yMin`/`yMax` | | `XP` (placar / ganho) | `xpTotal` / `xpEarned` |
+| `γ` | `gamma` | | `chance`, `roll`, `k`, `α`, `β` | iguais (`alpha`, `beta`) |
+
 ### Dados e onboarding
 - **RF-01**: Na primeira execução, o sistema DEVE popular o banco local com um roster curado de personagens e arcos buscados da Comic Vine.
 - **RF-02**: O sistema DEVE calcular e persistir, no momento do seed, os atributos derivados de cada personagem e arco (Poder, Veterania, Dificuldade).
@@ -51,7 +65,7 @@ App mobile "manager" onde o jogador recruta personagens da Marvel (dados da Comi
   `XP = α * Dificuldade * m`, `Moeda = β * Dificuldade * m`, com **α = 10**, **β = 5** (valores iniciais — calibrar em T-25), onde `m = 1.0` em sucesso e `m = 0.2` em falha.
   XP e Moeda ganhos são arredondados pro inteiro mais próximo (`roundToInt`) antes de persistir/creditar.
   *Exemplo: missão de Dificuldade=50, sucesso → XP=500, Moeda=250. Mesma missão, falha → XP=100, Moeda=50.*
-  O XP ganho é somado a um placar vitalício do jogador (`xp_total`) — NÃO altera atributo de herói nenhum (C-11). A Moeda ganha é somada ao saldo gastável (RF-16).
+  O XP ganho é somado a um placar vitalício do jogador (`xpTotal`) — NÃO altera atributo de herói nenhum (C-11). A Moeda ganha é somada ao saldo gastável `coinBalance` (RF-16).
 - **RF-15**: Ao concluir uma missão (sucesso ou falha), cada herói que participou fica indisponível por `15 * (Dificuldade/10)` minutos.
   *Exemplo: missão de Dificuldade=100 → cooldown de 150 minutos (2h30) por herói usado.*
 
@@ -70,7 +84,7 @@ App mobile "manager" onde o jogador recruta personagens da Marvel (dados da Comi
 - **RF-19**: Um herói desbloqueia uma missão se aparecer em pelo menos uma issue do array `issues` daquele arco (via `character_credits` de cada issue). O unlock é resolvido no seed para TODOS os personagens curados; uma missão fica visível na Tela 3 quando pelo menos um herói **recrutado** a desbloqueia.
 
 ### Economia e estado
-- **RF-21**: O jogo começa (após o seed) com um estado inicial fixo: `moeda_balance = 300` (suficiente pra 3 pacotes → mínimo de 3 heróis do RF-08), `xp_total = 0`, nenhum herói recrutado. Valores iniciais — calibrar em T-25.
+- **RF-21**: O jogo começa (após o seed) com um estado inicial fixo: `coinBalance = 300` (suficiente pra 3 pacotes → mínimo de 3 heróis do RF-08), `xpTotal = 0`, nenhum herói recrutado. Valores iniciais — calibrar em T-25.
 - **RF-22**: Uma missão PODE ser repetida quantas vezes o jogador quiser — não existe estado de "missão concluída". Cada execução gera um novo registro de resultado e coloca os heróis usados em cooldown (RF-15).
 
 ## Telas (comportamento esperado, não layout)
