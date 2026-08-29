@@ -8,14 +8,14 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [x] T-03: Escolher e configurar DI (Koin — ver plan.md)
 
 ## Fase 1 — Dados locais (Room)
-- [ ] T-04: Criar entidades Room: `Character`, `CharacterTeam`, `CharacterFriend`, `StoryArc`, `CharacterUnlock`, `GameState`, `UserRoster`, `Mission`, `MissionResult`, `MissionResultHero` (schema em plan.md)
-- [ ] T-05: Criar DAOs correspondentes
+- [ ] T-04: Criar entidades Room (schema v4 em plan.md): `Team`, `Character`, `CharacterTeam`, `CharacterSynergy`, `StoryArc`, `CharacterUnlock`, `SeedMeta`, `GameState`, `UserRoster`, `MissionResult`, `MissionResultHero`. PK = `cv_id` no catálogo; FK com `@Index` + CASCADE; PK composta nas N:N.
+- [ ] T-05: Criar DAOs correspondentes + `AppDatabase` (com `onCreate` inserindo a linha `game_state` default e `fallbackToDestructiveMigration(true)`)
 
 ## Fase 2 — Lógica de jogo (`game/`, sem Android)
 - [ ] T-06: Poder (RF-04) + testes unitários
 - [ ] T-07: Veterania (RF-05) + testes
 - [ ] T-08: Compensação de raridade + piso de Poder (RF-06/07) + testes
-- [ ] T-09: ForçaTime, B_sin, B_fac (RF-09) + testes, incluindo guarda de divisão por zero (RF-10)
+- [ ] T-09: ForçaTime, B_sin, B_fac (RF-09) + testes, incluindo empate de facção (menor cv_id), `B_fac = 0` quando ninguém compartilha equipe, e guarda de divisão por zero (RF-10)
 - [ ] T-10: Dificuldade (RF-11) + testes
 - [ ] T-11: Chance de sucesso e sorteio (RF-12/13) + testes
 - [ ] T-12: Recompensa dependente de resultado (RF-14) + testes
@@ -26,11 +26,12 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [ ] T-15: Configurar Ktor Client + kotlinx.serialization pra Comic Vine
 - [ ] T-16: Buscar personagens curados (`/character/{id}/`)
 - [ ] T-17: Buscar arcos curados + issues (`/story_arc/{id}/`)
-- [ ] T-18: Resolver unlock via `/issue/{id}/` → `character_credits` (RF-19)
+- [ ] T-18: Resolver unlock via `/issue/4000-{id}/` → `character_credits` (RF-19). Definir mitigação do custo de chamadas (ver plan.md: parar quando todos os curados achados / amostrar / etc.)
 - [ ] T-19: Rotina de seed completa (roda 1x, popula Room, congela constantes de normalização — constitution.md C-08)
 
 ## Fase 4 — UI (Compose)
-- [ ] T-20: Tela de Roster/Recrutamento
+- [ ] T-19b: Navegação (Navigation Compose) + Tela 0 de erro de seed (RF-20) + gate de loading enquanto o seed roda
+- [ ] T-20: Tela de Roster/Recrutamento (inclui saldo de Moeda e placar de XP — RF-21)
 - [ ] T-21: Tela de Montagem de time
 - [ ] T-22: Tela de Lista de missões
 - [ ] T-23: Tela de Resultado da missão

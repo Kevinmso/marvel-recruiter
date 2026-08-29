@@ -2,16 +2,24 @@
 
 Lista de personagens e arcos que compõem o jogo. `cv_id` é o identificador na Comic Vine (formato `4005-XXXX` pra personagem, numérico simples pra arco).
 
+## Regras de curadoria (o schema depende delas)
+1. **Todo arco curado precisa de ≥1 personagem do roster que apareça em alguma issue dele** — senão `character_unlock` fica vazio pra ele e a missão nunca desbloqueia (missão morta).
+2. **`cv_id` de personagem e de arco são únicos nesta lista** — duplicata quebra o seed (`@PrimaryKey` = `cv_id`).
+3. **A limpeza de reimpressões/edições estrangeiras é registrada aqui, em texto** (coluna "Issues (limpo)"). O banco só guarda o `num_issues` final; não há tabela de issues.
+4. **`p_max` do conjunto de teste é 30 (Carol), não 22** — a lista de poderes da Comic Vine NÃO vem truncada. Ver `specs/constantes-normalizacao.md`. Recalcular todos os limites com o roster final (T-26).
+
 ## Personagens
 
 ### Já testados com chamada real (dados confirmados)
 | Nome | `cv_id` | Poder (nº poderes) | `count_of_issue_appearances` |
 |---|---|---|---|
-| Wolverine | 4005-1440 | 22 | 16924 |
+| Wolverine | 4005-1440 | 24 | 16924 |
 | Capitão América | 4005-1442 | 18 | 12285 |
 | Colossus | 4005-1460 | 8 | 7917 |
-| Carol Danvers (Capitã Marvel) | 4005-21561 | 22+ (lista truncada) | 4688 |
+| Carol Danvers (Capitã Marvel) | 4005-21561 | 30 | 4688 |
 | Black Goliath (Bill Foster) | 4005-3470 | 6 | 337 |
+
+*(nº de poderes reconfirmado com chamada real — a lista não vinha truncada; Wolverine é 24 e Carol 30, não "22")*
 
 ### Ainda sem `cv_id` confirmado (TODO — buscar via `/characters/?filter=name:...`)
 **Avengers**: Thor, Hulk, Viúva Negra, Gavião Arqueiro, Visão, Feiticeira Escarlate, Pantera Negra, Homem-Formiga, Vespa

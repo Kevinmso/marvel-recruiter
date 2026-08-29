@@ -9,7 +9,9 @@ Os valores abaixo vêm do **conjunto de teste de 5 heróis e 5 arcos** (testados
 | | Valor (teste, 5 heróis) | Valor final (TODO) |
 |---|---|---|
 | `p_min` | 6 (Black Goliath) | — |
-| `p_max` | 22 (Wolverine/Carol — lista truncada, piso não teto real) | — |
+| `p_max` | **30 (Carol Danvers)** | — |
+
+> ⚠️ Correção: versões anteriores diziam `p_max = 22` com a nota "lista truncada". **Reconfirmado com chamada real à API: a lista de `powers` NÃO vem truncada.** Os nº de poderes reais dos 5 são Wolverine 24, Cap 18, Colossus 8, Carol 30, Black Goliath 6 → `p_min = 6`, `p_max = 30`. Os exemplos do RF-04/RF-07 no `spec.md` já usam 30.
 
 ## Veterania (`x_min`, `x_max`) — RF-05
 | | Valor (teste, 5 heróis) | Valor final (TODO) |
