@@ -8,8 +8,8 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [x] T-03: Escolher e configurar DI (Koin — ver plan.md)
 
 ## Fase 1 — Dados locais (Room)
-- [ ] T-04: Criar entidades Room (schema v4 em plan.md): `Team`, `Character`, `CharacterTeam`, `CharacterSynergy`, `StoryArc`, `CharacterUnlock`, `SeedMeta`, `GameState`, `UserRoster`, `MissionResult`, `MissionResultHero`. PK = `cv_id` no catálogo; FK com `@Index` + CASCADE; PK composta nas N:N.
-- [ ] T-05: Criar DAOs correspondentes + `AppDatabase` (com `onCreate` inserindo a linha `game_state` default e `fallbackToDestructiveMigration(true)`)
+- [x] T-04: Criar entidades Room (schema v4 em plan.md): `Team`, `Character`, `CharacterTeam`, `CharacterSynergy`, `StoryArc`, `CharacterUnlock`, `SeedMeta`, `GameState`, `UserRoster`, `MissionResult`, `MissionResultHero`. PK = `cv_id` no catálogo; FK com `@Index` + CASCADE; PK composta nas N:N.
+- [x] T-05: DAOs (6) + `AppDatabase` (11 entidades, `exportSchema` → `app/schemas/`, `fallbackToDestructiveMigration(true)`) + `InitialStateCallback` (`onCreate` insere `game_state` default via `SQLiteConnection`) + wiring no Koin (`appModule`)
 
 ## Fase 2 — Lógica de jogo (`game/`, sem Android)
 - [ ] T-06: Poder (RF-04) + testes unitários
