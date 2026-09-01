@@ -26,4 +26,22 @@ object Normalization {
     fun adjustedPower(compensated: Double): Double{
         return max(15.0, compensated)
     }
+
+    fun difficulty(y: Int, yMin: Int, yMax: Int): Double { // y = number of issues in the story arc
+        if (yMin == yMax) return 50.0
+        return 10.0 + 90.0 * (ln(y + 1.0) - ln(yMin + 1.0)) / (ln(yMax + 1.0) - ln(yMin + 1.0))
+    }
+}
+
+/** Rótulo de dificuldade exibido na Tela 3 (RF-11). */
+enum class DifficultyLabel {
+    EASY, MEDIUM, EPIC;
+
+    companion object {
+        fun of(difficulty: Double): DifficultyLabel = when {
+            difficulty < 40.0 -> EASY
+            difficulty < 70.0 -> MEDIUM
+            else -> EPIC
+        }
+    }
 }
