@@ -13,7 +13,7 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 
 ## Fase 2 — Lógica de jogo (`game/`, sem Android)
 - [x] T-06: Poder (RF-04) + testes unitários — `Normalization.power()` + `PowerTest` (5 casos)
-- [ ] T-07: Veterania (RF-05) + testes
+- [x] T-07: Veterania (RF-05) + testes — `Normalization.veterancy()` + `VeterancyTest` (5 casos)
 - [ ] T-08: Compensação de raridade + piso de Poder (RF-06/07) + testes
 - [ ] T-09: ForçaTime, B_sin, B_fac (RF-09) + testes, incluindo empate de facção (menor cv_id), `B_fac = 0` quando ninguém compartilha equipe, e guarda de divisão por zero (RF-10)
 - [ ] T-10: Dificuldade (RF-11) + testes
