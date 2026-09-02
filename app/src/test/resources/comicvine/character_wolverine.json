@@ -1,0 +1,36 @@
+{
+  "error": "OK",
+  "limit": 1,
+  "offset": 0,
+  "number_of_page_results": 1,
+  "number_of_total_results": 1,
+  "status_code": 1,
+  "results": {
+    "id": 1440,
+    "name": "Wolverine",
+    "real_name": "James Howlett",
+    "aliases": "Logan\nWeapon X\nPatch",
+    "deck": "One of the most popular X-Men, Wolverine is a mutant with a healing factor and an adamantium skeleton.",
+    "count_of_issue_appearances": 16929,
+    "image": {
+      "icon_url": "https://comicvine.gamespot.com/a/uploads/square_avatar/wolverine.jpg",
+      "medium_url": "https://comicvine.gamespot.com/a/uploads/scale_medium/wolverine.jpg",
+      "screen_url": "https://comicvine.gamespot.com/a/uploads/screen_kubrick/wolverine.jpg",
+      "original_url": "https://comicvine.gamespot.com/a/uploads/original/wolverine.jpg"
+    },
+    "publisher": { "id": 31, "name": "Marvel" },
+    "powers": [
+      { "id": 2, "name": "Super Strength", "api_detail_url": "https://x/power/4035-2/" },
+      { "id": 5, "name": "Healing", "api_detail_url": "https://x/power/4035-5/" },
+      { "id": 9, "name": "Claws", "api_detail_url": "https://x/power/4035-9/" }
+    ],
+    "teams": [
+      { "id": 3173, "name": "X-Men" },
+      { "id": 50418, "name": "Weapon X" }
+    ],
+    "character_friends": [
+      { "id": 1460, "name": "Colossus" },
+      { "id": 21561, "name": "Carol Danvers" }
+    ]
+  }
+}

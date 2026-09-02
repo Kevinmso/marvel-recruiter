@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.marvel.recruiter.BuildConfig
 import com.marvel.recruiter.data.local.AppDatabase
 import com.marvel.recruiter.data.local.InitialStateCallback
+import com.marvel.recruiter.data.remote.ComicVineApi
 import com.marvel.recruiter.data.remote.comicVineHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -25,4 +26,5 @@ val appModule = module {
     single { get<AppDatabase>().seedMetaDao() }
 
     single { comicVineHttpClient(apiKey = BuildConfig.COMIC_VINE_API_KEY) }
+    single { ComicVineApi(get()) }
 }

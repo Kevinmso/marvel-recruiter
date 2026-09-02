@@ -24,7 +24,7 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 
 ## Fase 3 — Rede + Seed (RF-01/02/03)
 - [x] T-15: Configurar Ktor Client + kotlinx.serialization pra Comic Vine — `data/remote/ComicVineHttpClient.kt` (CIO, ContentNegotiation, User-Agent, api_key+format) + `ComicVineResponse<T>` envelope + Koin + `ComicVineHttpClientTest` (3 casos, MockEngine)
-- [ ] T-16: Buscar personagens curados (`/character/{id}/`)
+- [x] T-16: Buscar personagens curados (`/character/4005-{id}/`) — `CharacterDto`/`NamedRef`/`ImageDto` + `ComicVineApi.character()` + Koin + `ComicVineApiTest` (4 casos, fixture JSON real)
 - [ ] T-17: Buscar arcos curados + issues (`/story_arc/{id}/`)
 - [ ] T-18: Resolver unlock via `/issue/4000-{id}/` → `character_credits` (RF-19). Definir mitigação do custo de chamadas (ver plan.md: parar quando todos os curados achados / amostrar / etc.)
 - [ ] T-19: Rotina de seed completa (roda 1x, popula Room, congela constantes de normalização — constitution.md C-08)
