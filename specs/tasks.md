@@ -23,7 +23,7 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [x] T-14: Sorteio ponderado de pacote (RF-16/17) + testes — `game/Pack.kt`: `drawFromPack(pool, random)` (roleta, RNG injetável) + `PackCandidate` + `PACK_COST` + `PackTest` (5 casos)
 
 ## Fase 3 — Rede + Seed (RF-01/02/03)
-- [ ] T-15: Configurar Ktor Client + kotlinx.serialization pra Comic Vine
+- [x] T-15: Configurar Ktor Client + kotlinx.serialization pra Comic Vine — `data/remote/ComicVineHttpClient.kt` (CIO, ContentNegotiation, User-Agent, api_key+format) + `ComicVineResponse<T>` envelope + Koin + `ComicVineHttpClientTest` (3 casos, MockEngine)
 - [ ] T-16: Buscar personagens curados (`/character/{id}/`)
 - [ ] T-17: Buscar arcos curados + issues (`/story_arc/{id}/`)
 - [ ] T-18: Resolver unlock via `/issue/4000-{id}/` → `character_credits` (RF-19). Definir mitigação do custo de chamadas (ver plan.md: parar quando todos os curados achados / amostrar / etc.)
