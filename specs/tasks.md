@@ -18,9 +18,9 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [x] T-09: ForçaTime, B_sin, B_fac (RF-09) + testes — `teamStrength/synergyBonus/factionBonus` + `HeroStats`/`SynergyPair` data classes + `TeamStrengthTest` (11 casos, inclui `B_fac=0` sem compartilhamento e cap de 40). RF-10 já coberto em T-06/07.
 - [x] T-10: Dificuldade (RF-11) + testes — `Normalization.difficulty()` + `enum DifficultyLabel` + `DifficultyTest` (7 casos)
 - [x] T-11: Chance de sucesso e sorteio (RF-12/13) + testes — `game/Mission.kt`: `successChance()` + `resolveMission(chance, random)` (RNG injetável, C-15) + `MissionTest` (9 casos)
-- [ ] T-12: Recompensa dependente de resultado (RF-14) + testes
-- [ ] T-13: Cooldown (RF-15) + testes
-- [ ] T-14: Sorteio ponderado de pacote (RF-16/17) + testes
+- [x] T-12: Recompensa dependente de resultado (RF-14) + testes — `missionReward()` + `MissionReward` data class + `MissionRewardTest` (4 casos)
+- [x] T-13: Cooldown (RF-15) + testes — `cooldownMinutes()` + `availableAtAfterMission(difficulty, now)` + `CooldownTest` (4 casos)
+- [x] T-14: Sorteio ponderado de pacote (RF-16/17) + testes — `game/Pack.kt`: `drawFromPack(pool, random)` (roleta, RNG injetável) + `PackCandidate` + `PACK_COST` + `PackTest` (5 casos)
 
 ## Fase 3 — Rede + Seed (RF-01/02/03)
 - [ ] T-15: Configurar Ktor Client + kotlinx.serialization pra Comic Vine

@@ -6,10 +6,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.random.Random
 
-/** RF-12 (chance de sucesso) + RF-13 (sorteio com fonte de aleatoriedade injetável). */
 class MissionTest {
-
-    // ---- RF-12: successChance ----
 
     @Test
     fun `time igual a dificuldade da 50 por cento`() {
@@ -39,10 +36,8 @@ class MissionTest {
         assertEquals(0.95, successChance(teamStrength = 9999.0, difficulty = 50.0), 0.001)
     }
 
-    // ---- RF-13: resolveMission ----
-
     @Test
-    fun `chance 1 sempre sucesso (roll 0-99 sempre menor que 100)`() {
+    fun `chance 1 sempre sucesso`() {
         val random = Random(1)
         repeat(1000) { assertTrue(resolveMission(chance = 1.0, random = random)) }
     }

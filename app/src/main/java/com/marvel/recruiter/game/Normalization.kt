@@ -33,7 +33,6 @@ object Normalization {
     }
 }
 
-/** Rótulo de dificuldade exibido na Tela 3 (RF-11). */
 enum class DifficultyLabel {
     EASY, MEDIUM, EPIC;
 

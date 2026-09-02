@@ -3,16 +3,13 @@ package com.marvel.recruiter.game
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-/** RF-11: normalização logarítmica de Dificuldade (escala 10–100) + rótulo. */
 class DifficultyTest {
 
-    // limites do conjunto de teste (constantes-normalizacao.md)
     private val yMin = 6
     private val yMax = 122
 
     @Test
-    fun `exemplo House of M do spec`() {
-        // 10 + 90 * (ln(81) - ln(7)) / (ln(123) - ln(7)) ≈ 86,9
+    fun `House of M (y=80) da 86,9`() {
         assertEquals(86.9, Normalization.difficulty(80, yMin, yMax), 0.1)
     }
 
@@ -27,11 +24,9 @@ class DifficultyTest {
     }
 
     @Test
-    fun `RF-10 — yMin igual yMax retorna 50`() {
+    fun `yMin igual yMax retorna 50`() {
         assertEquals(50.0, Normalization.difficulty(30, 10, 10), 0.001)
     }
-
-    // ---- rótulo (RF-11) ----
 
     @Test
     fun `rotulo EASY abaixo de 40`() {

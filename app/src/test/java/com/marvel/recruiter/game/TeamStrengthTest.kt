@@ -3,7 +3,6 @@ package com.marvel.recruiter.game
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-/** RF-09: teamStrength, synergyBonus, factionBonus. */
 class TeamStrengthTest {
 
     private fun hero(
@@ -13,10 +12,7 @@ class TeamStrengthTest {
         teams: Set<Long> = emptySet(),
     ) = HeroStats(cvId, adjustedPower, veterancy, teams)
 
-    /** Monta o par no formato normalizado (low < high) que o seed grava. */
     private fun pair(a: Long, b: Long) = SynergyPair(minOf(a, b), maxOf(a, b))
-
-    // ---------- synergyBonus ----------
 
     @Test
     fun `sem pares de amizade da 0`() {
@@ -49,10 +45,8 @@ class TeamStrengthTest {
         val allPairs = buildSet {
             for (a in 1L..5L) for (b in (a + 1)..5L) add(pair(a, b))
         }
-        assertEquals(100, synergyBonus(team, allPairs)) // 10 pares * 10
+        assertEquals(100, synergyBonus(team, allPairs))
     }
-
-    // ---------- factionBonus ----------
 
     @Test
     fun `ninguem compartilha equipe da 0`() {
@@ -83,8 +77,6 @@ class TeamStrengthTest {
         )
         assertEquals(9, factionBonus(team))
     }
-
-    // ---------- teamStrength ----------
 
     @Test
     fun `soma base sem bonus`() {
