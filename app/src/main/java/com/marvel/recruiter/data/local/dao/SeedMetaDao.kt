@@ -13,6 +13,9 @@ interface SeedMetaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(rows: List<SeedMetaEntity>)
 
+    @Query("DELETE FROM seed_meta")
+    suspend fun clear()
+
     @Query("SELECT * FROM seed_meta")
     suspend fun getAll(): List<SeedMetaEntity>
 

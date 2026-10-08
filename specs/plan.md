@@ -148,7 +148,13 @@ Tipos: ids `Long`; `coinBalance`/`xp*`/recompensas `Int`; `adjustedPower`/`veter
   - `character.story_arc_credits` existe na doc oficial mas retorna vazio na prática — não usar; usar `story_arc.issues` → `issue.character_credits` (RF-19).
   - Rate limit: 200 requisições/recurso/hora.
   - Uso restrito a fins não comerciais, exige atribuição à Comic Vine.
-- **Custo do unlock (RF-19) — atenção pra T-18/T-19:** resolver o unlock exige varrer `issue.character_credits` de CADA issue de CADA arco. "Avengers" Civil War tem 122 issues = 122 chamadas `/issue/` só pra um arco. Com ~15–20 arcos, dá 500–1500 chamadas e o rate limit é 200/recurso/hora. Mitigações possíveis (decidir na T-18): parar de varrer um arco quando todos os curados já foram achados; amostrar N issues por arco; ou rodar o seed 1x na máquina de dev e embarcar o `.db` em `assets/` (mas isso contradiz RF-01 — seria mudança de spec).
+- **Resolução do unlock (RF-19) — decisão da T-18:** a rota por issue (`/issue/4000-{id}/` para cada issue de cada arco) custaria 500–1500 chamadas, acima do rate limit de 200/h. Adotada a rota inversa, testada com chamada real:
+  1. Para cada personagem curado: `/character/4005-{id}/?field_list=id,issue_credits` → conjunto `I(c)` de issues em que ele aparece (uma chamada retorna a lista inteira; Colossus: 7928 issues).
+  2. Para cada arco curado: conjunto `J(a)` = ids de `story_arc.issues` (já vem do seed, T-17).
+  3. Unlock: `(c, a)` existe quando `I(c) ∩ J(a) ≠ ∅`.
+  Custo: ~24 + ~20 chamadas no seed. Respeita a curadoria (só conta issues que sobraram no arco limpo).
+  - O endpoint plural `/issues/` **não** retorna `character_credits` (testado) — não usar pra isso.
+  - Batch por `filter=id:a|b|c` no plural serve só pra metadados de issue, não pra créditos.
 
 ## Configuração
 ```properties
@@ -188,3 +194,9 @@ Se a key estiver ausente, `BuildConfig.COMIC_VINE_API_KEY` fica `""` — a build
 1. Configurar `COMIC_VINE_API_KEY` no `local.properties`.
 2. Rodar num emulador/dispositivo Android.
 3. Aguardar o seed inicial (RF-01) antes de testar recrutamento — mostrar loading, não travar a UI.
+
+## Snapshot do roster (decisão de 2026-10-03)
+- Fonte da verdade do seed: `app/src/main/assets/roster_snapshot.json`.
+- Gerado por `tools/generate_roster_snapshot.py` (chama a Comic Vine com a key de `local.properties`). Só roda manualmente, quando o roster muda.
+- O app lê o JSON com kotlinx.serialization e monta o mesmo `SeedPlan` de antes; a gravação transacional e `seedCompleted` não mudam.
+- Motivo: limite de 200 requisições/hora por recurso da Comic Vine. Com 50 personagens, o seed por rede consome 100 chamadas por instalação.

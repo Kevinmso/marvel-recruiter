@@ -19,7 +19,7 @@ Regras não-negociáveis do projeto. Código ou decisão que viole isto deve ser
 
 ## Regras de jogo
 - **C-10**: A recompensa de uma missão DEVE depender do resultado (sucesso ou falha) — NÃO DEVE ser um valor fixo independente do resultado.
-- **C-11**: O sistema NÃO DEVE implementar progressão de herói (nível/XP alterando atributos) — fora de escopo por decisão de projeto.
+- **C-11**: O sistema NÃO DEVE implementar progressão de herói (nível/XP alterando atributos) — fora de escopo por decisão de projeto. Nível do *jogador* (RF-29) é permitido desde que não altere atributo de herói; ele só libera pacotes.
 - **C-12**: O app NÃO DEVE implementar autenticação/conta de usuário — é local, de um usuário só.
 
 ## Qualidade

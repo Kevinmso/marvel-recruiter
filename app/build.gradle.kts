@@ -18,6 +18,9 @@ val comicVineApiKey: String = Properties().apply {
     ?: ""
 
 android {
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
     namespace = "com.marvel.recruiter"
     compileSdk {
         version = release(37)
@@ -52,6 +55,11 @@ android {
     }
 }
 
+// Roborazzi: `-Proborazzi.test.record=true` grava os PNGs de screenshot (ver ScreenshotTest).
+tasks.withType<Test>().configureEach {
+    providers.gradleProperty("roborazzi.test.record").orNull?.let { systemProperty("roborazzi.test.record", it) }
+}
+
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
     arg("room.generateKotlin", "true")
@@ -65,6 +73,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
@@ -94,6 +103,13 @@ dependencies {
     implementation(libs.koin.androidx.compose)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.roborazzi.compose)
+    testImplementation(libs.roborazzi.junit)
+    testImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.ktor.client.mock)
     testImplementation(platform(libs.koin.bom))

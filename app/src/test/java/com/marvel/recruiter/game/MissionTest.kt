@@ -10,30 +10,29 @@ class MissionTest {
 
     @Test
     fun `time igual a dificuldade da 50 por cento`() {
-        // (100 - 100) / 100 * 1 + 0.5 = 0.5
         assertEquals(0.5, successChance(teamStrength = 100.0, difficulty = 100.0), 0.001)
     }
 
     @Test
     fun `time mais forte que a dificuldade passa de 50 por cento`() {
-        // (150 - 100) / 100 + 0.5 = 1.0 -> clamp -> 0.95
-        assertEquals(0.95, successChance(teamStrength = 150.0, difficulty = 100.0), 0.001)
+        // 1 / (1 + e^(-100/25)) = 0.88
+        assertEquals(0.8411, successChance(teamStrength = 150.0, difficulty = 100.0), 0.001)
     }
 
     @Test
     fun `time mais fraco fica abaixo de 50 por cento`() {
-        // (60 - 100) / 100 + 0.5 = 0.1
-        assertEquals(0.1, successChance(teamStrength = 60.0, difficulty = 100.0), 0.001)
+        // 1 / (1 + e^(40/30)) = 0.21
+        assertEquals(0.2086, successChance(teamStrength = 60.0, difficulty = 100.0), 0.001)
     }
 
     @Test
-    fun `clamp inferior em 0,05`() {
+    fun `limite inferior em 0,1`() {
         assertEquals(0.05, successChance(teamStrength = 0.0, difficulty = 100.0), 0.001)
     }
 
     @Test
-    fun `clamp superior em 0,95`() {
-        assertEquals(0.95, successChance(teamStrength = 9999.0, difficulty = 50.0), 0.001)
+    fun `limite superior em 0,9`() {
+        assertEquals(0.95, successChance(teamStrength = 1e9, difficulty = 50.0), 0.001)
     }
 
     @Test

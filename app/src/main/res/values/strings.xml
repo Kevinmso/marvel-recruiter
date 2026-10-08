@@ -1,3 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Recruiter</string>
+    <string name="app_name">Marvel Recruiter</string>
+
+    <!-- Tela 0 — seed -->
+    <string name="seed_subtitle">Dossiê de recrutamento</string>
+    <string name="seed_error_title">Não foi possível preparar o recrutamento</string>
+    <string name="seed_error_body">Sem conexão ou a Comic Vine não respondeu. O jogo precisa carregar os heróis para começar.</string>
+    <string name="seed_error_code">Erro de rede ou da Comic Vine</string>
+    <string name="seed_folder_description">Pasta de dossiê fechada</string>
+
+    <!-- Ações e navegação -->
+    <string name="action_retry">TENTAR NOVAMENTE</string>
+    <string name="action_back">Voltar</string>
+    <string name="action_skip">PULAR</string>
+    <string name="action_continue">CONTINUAR</string>
+    <string name="action_new_mission">NOVA MISSÃO</string>
+    <string name="action_same_team">MONTAR TIME</string>
+    <string name="action_go_roster">IR PARA EQUIPE</string>
+    <string name="action_view_missions">VER MISSÕES</string>
+    <string name="action_save_retry">TENTAR SALVAR</string>
+    <string name="action_clear_filter">Limpar filtro</string>
+    <string name="action_profile">PERFIL</string>
+    <string name="tab_roster">Equipe</string>
+    <string name="tab_missions">Missões</string>
+    <string name="tab_pokedex">Arquivo</string>
+    <string name="attribution">Dados: Comic Vine</string>
+    <string name="error_generic">Algo deu errado. Tente de novo.</string>
+
+    <!-- Tela 1 — roster -->
+    <string name="roster_title">EQUIPE</string>
+    <string name="roster_recruited">RECRUTADOS %1$d/%2$d</string>
+    <string name="roster_heroes_title">SEUS HERÓIS</string>
+    <string name="roster_filter_available">Disponíveis</string>
+    <string name="roster_empty_title">Nenhum herói recrutado</string>
+    <string name="roster_empty_body">Você começa com 300 Moeda, o bastante para 3 pacotes. Compre o primeiro para montar seu time.</string>
+    <string name="roster_partial">Faltam %1$d para montar um time de 3</string>
+    <string name="pack_title">PACOTE DE RECRUTAMENTO</string>
+    <string name="pack_body">Sorteia um herói ainda não recrutado. Chance maior para veteranos.</string>
+    <string name="pack_buy">COMPRAR · %1$d MOEDA</string>
+    <string name="pack_insufficient">Saldo insuficiente</string>
+    <string name="level_label">NÍVEL %1$d</string>
+    <string name="level_pack_open">ABRIR PACOTE DE NÍVEL · %1$d</string>
+    <string name="pack_all_recruited">TODOS RECRUTADOS</string>
+    <string name="pack_new_recruit">Novo recruta</string>
+    <string name="pack_cost">−%1$d Moeda</string>
+    <string name="pack_cover">CLASSIFICADO</string>
+    <string name="msg_not_enough_coins">Moeda insuficiente para o pacote.</string>
+    <string name="msg_no_hero_left">Todos os heróis já foram recrutados.</string>
+    <string name="msg_purchase_failed">Não foi possível comprar agora. Nada foi cobrado.</string>
+    <string name="msg_recruit_first">Recrute ao menos 3 heróis primeiro.</string>
+    <string name="msg_wait_roll">Aguarde a rolagem</string>
+    <string name="coin_label">Moeda: %1$s</string>
+    <string name="xp_label">XP %1$s</string>
+
+    <!-- Heróis e carimbos -->
+    <string name="cd_hero_profile">Ver perfil de %1$s</string>
+    <string name="cd_hero_image">Imagem de %1$s</string>
+    <string name="cd_remove_hero">Remover %1$s do time</string>
+    <string name="cd_check">Selecionado</string>
+    <string name="stamp_recruited">RECRUTADO</string>
+    <string name="stamp_resting">DESCANSO</string>
+    <string name="stamp_success">SUCESSO</string>
+    <string name="stamp_failure">FALHA</string>
+    <string name="stamp_locked">ARQUIVO BLOQUEADO</string>
+    <string name="stamp_new">NOVO</string>
+    <string name="hero_stat_power">PODER</string>
+    <string name="hero_stat_veterancy">VETERANIA</string>
+    <string name="hero_stat_powers_count">PODERES %1$d</string>
+    <string name="hero_stat_appearances">APARIÇÕES %1$d</string>
+    <string name="hero_status_resting">Em descanso</string>
+    <string name="hero_status_available">Disponível</string>
+    <string name="cooldown_ready">DISPONÍVEL</string>
+    <string name="cooldown_hours_minutes">%1$dh %2$dmin</string>
+    <string name="cooldown_minutes">%1$d min</string>
+
+    <!-- Missões -->
+    <string name="difficulty_easy">FÁCIL</string>
+    <string name="difficulty_medium">MÉDIO</string>
+    <string name="difficulty_epic">ÉPICO</string>
+    <string name="filter_all">Todas</string>
+    <string name="issues_count">%1$d edições</string>
+    <string name="difficulty_value">Dificuldade %1$s</string>
+    <string name="missions_title">MISSÕES</string>
+    <string name="missions_summary">Missões disponíveis: %1$d · Heróis em descanso: %2$d</string>
+    <string name="missions_empty_title">Nenhuma missão desbloqueada</string>
+    <string name="missions_empty_body">Recrute um herói para liberar as HQs dele como missões.</string>
+    <string name="missions_filter_empty">Nenhuma missão nessa dificuldade</string>
+
+    <!-- Pokédex -->
+    <string name="pokedex_title">ARQUIVO</string>
+    <string name="pokedex_counter">%1$d/%2$d descobertos</string>
+    <string name="pokedex_filter_all">Todos</string>
+    <string name="pokedex_filter_recruited">Recrutados</string>
+    <string name="pokedex_sort_catalog">Catálogo</string>
+    <string name="pokedex_filter_locked">Bloqueados</string>
+    <string name="pokedex_rarity_common">Comum</string>
+    <string name="pokedex_rarity_rare">Rara</string>
+    <string name="pokedex_rarity_legendary">Lendária</string>
+    <string name="pokedex_sort_alphabetical">A–Z</string>
+    <string name="pokedex_hidden_name">Identidade oculta</string>
+    <string name="pokedex_locked_hint">Recrute para ver a ficha</string>
+    <string name="pokedex_empty_recruited">Nenhum herói recrutado ainda.</string>
+    <string name="cd_pokedex_locked">Personagem não recrutado</string>
+
+    <!-- História do arco -->
+    <string name="arc_story_title">HISTÓRIA</string>
+    <string name="arc_not_found">Arco não encontrado.</string>
+    <string name="arc_build_team">MONTAR TIME</string>
+
+    <!-- Tela 2 — montagem de time -->
+    <string name="squad_title">MONTAR TIME</string>
+    <string name="squad_no_arc_title">Escolha um arco na aba Missões</string>
+    <string name="squad_strength">Força do time</string>
+    <string name="squad_vs">vs Dificuldade %1$s</string>
+    <string name="squad_base">Base</string>
+    <string name="squad_synergy">Sinergia +%1$d</string>
+    <string name="squad_faction">Equipe +%1$d</string>
+    <string name="squad_available_title">HERÓIS DISPONÍVEIS</string>
+    <string name="squad_hint">Toque para escalar · Máx. 5</string>
+    <string name="squad_selected_count">%1$d/5 escalados</string>
+    <string name="squad_start">INICIAR MISSÃO</string>
+    <string name="squad_need_three">Escale ao menos 3 heróis</string>
+    <string name="squad_not_enough_available">Você precisa de 3 heróis disponíveis. Aguarde o descanso ou recrute mais.</string>
+    <string name="squad_only_available">Só %1$d herói(s) disponível(is)</string>
+    <string name="squad_need_arc">Escolha um arco antes de iniciar</string>
+
+    <!-- Tela 4 — resultado -->
+    <string name="result_title">RELATÓRIO</string>
+    <string name="result_calc_title">Cálculo</string>
+    <string name="result_strength">ForçaTime</string>
+    <string name="result_difficulty">Dificuldade</string>
+    <string name="result_chance">Chance</string>
+    <string name="result_calculating">Calculando</string>
+    <string name="result_save_failed_title">Não foi possível salvar o resultado</string>
+    <string name="result_save_failed_body">A missão não foi registrada. Tente salvar de novo.</string>
+    <string name="result_force_label">ForçaTime %1$s de 200</string>
+    <string name="round_title">RODADA %1$d/%2$d</string>
+    <string name="round_attacker">%1$s ataca</string>
+    <string name="round_damage">-%1$d</string>
+    <string name="round_pressure">PRESSÃO RESTANTE DO ARCO</string>
+    <string name="round_pressure_value">%1$d%%</string>
+    <string name="round_pressure_cd">Pressão restante do arco: %1$d%%</string>
+    <string name="result_roll_label">Rolagem %1$d de 100 · Chance %2$d%%</string>
+    <string name="result_roll_outcome">Rolagem %1$d de 100. Chance de %2$d%%. %3$s</string>
+    <string name="result_outcome_success">Sucesso</string>
+    <string name="result_outcome_failure">Falha</string>
+    <string name="result_win">MISSÃO CUMPRIDA</string>
+    <string name="result_lose">MISSÃO FRACASSADA</string>
+    <string name="result_xp">XP ganho</string>
+    <string name="result_coins">Moeda ganha</string>
+    <string name="result_fail_multiplier">Falha: ×0,2</string>
+    <string name="result_rest_title">Descanso</string>
+
+    <!-- Tela 5 — perfil -->
+    <string name="profile_title">PERFIL</string>
+    <string name="profile_real_name">Nome real: %1$s</string>
+    <string name="profile_aliases">Também conhecido como: %1$s</string>
+    <string name="profile_attributes">Atributos</string>
+    <string name="profile_dossier">DOSSIÊ</string>
+    <string name="profile_no_summary">Sem resumo disponível.</string>
+    <string name="profile_teams">Equipes</string>
+    <string name="profile_arcs">Participou de</string>
+    <string name="profile_no_arcs">Nenhum arco curado com este herói.</string>
+    <string name="profile_locked_body">Recrute este herói para desbloquear o dossiê.</string>
+    <string name="profile_not_found">Herói não encontrado.</string>
+    <string name="faction_more">+%1$d</string>
+    <string name="original_text_caption">Texto original da Comic Vine (em inglês)</string>
+
+    <!-- Arcos e minijogo -->
+    <string name="cd_arc_image">Imagem do arco %1$s</string>
+    <string name="coordination_title">GOLPE NO TEMPO CERTO</string>
+    <string name="coordination_locked">Golpe travado</string>
+    <string name="coordination_bonus">Bônus de coordenação: +%1$d%%</string>
+    <string name="coordination_none">Sem bônus de coordenação</string>
+
+    <!-- Sequência de vitórias -->
+    <string name="streak_stamp">SEQUÊNCIA ×%1$d</string>
+    <string name="streak_bonus">Bônus de sequência: +%1$d%%</string>
+    <string name="rarity_common">Comum</string>
+    <string name="rarity_rare">Rara</string>
+    <string name="rarity_legendary">Lendária</string>
+    <string name="squad_team_bonus_active">Bônus de equipe ativo</string>
+    <string name="tab_shop">Loja</string>
+    <string name="shop_title">LOJA</string>
+    <string name="shop_section_common">Comum</string>
+    <string name="shop_section_rare">Rara</string>
+    <string name="shop_section_legendary">Lendária</string>
+    <string name="shop_price">%1$d moedas</string>
+    <string name="shop_buy">Comprar · %1$d</string>
+    <string name="shop_sold">VENDIDO</string>
+    <string name="shop_empty">Nenhuma oferta disponível hoje.</string>
+    <string name="shop_refresh_note">A vitrine renova todo dia à meia-noite.</string>
+    <string name="msg_shop_unavailable">Essa oferta não está mais disponível.</string>
+    <string name="shop_refresh_timer">Renova em</string>
+    <string name="shop_locked_title">Loja fechada</string>
+    <string name="shop_locked_body">Recrute pelo menos %1$d heróis para abrir a loja.</string>
 </resources>

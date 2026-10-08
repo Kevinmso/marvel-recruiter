@@ -1,0 +1,684 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "cb08d28ed4c07772a0baf3bfc1601d51",
+    "entities": [
+      {
+        "tableName": "team",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cvId` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`cvId`))",
+        "fields": [
+          {
+            "fieldPath": "cvId",
+            "columnName": "cvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "cvId"
+          ]
+        }
+      },
+      {
+        "tableName": "character",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cvId` INTEGER NOT NULL, `name` TEXT NOT NULL, `realName` TEXT, `deck` TEXT, `aliases` TEXT, `imageUrl` TEXT, `numPowers` INTEGER NOT NULL, `numAppearances` INTEGER NOT NULL, `adjustedPower` REAL NOT NULL, `veterancy` REAL NOT NULL, PRIMARY KEY(`cvId`))",
+        "fields": [
+          {
+            "fieldPath": "cvId",
+            "columnName": "cvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "realName",
+            "columnName": "realName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "deck",
+            "columnName": "deck",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "aliases",
+            "columnName": "aliases",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "numPowers",
+            "columnName": "numPowers",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numAppearances",
+            "columnName": "numAppearances",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adjustedPower",
+            "columnName": "adjustedPower",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "veterancy",
+            "columnName": "veterancy",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "cvId"
+          ]
+        }
+      },
+      {
+        "tableName": "character_team",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterCvId` INTEGER NOT NULL, `teamCvId` INTEGER NOT NULL, PRIMARY KEY(`characterCvId`, `teamCvId`), FOREIGN KEY(`characterCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`teamCvId`) REFERENCES `team`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "characterCvId",
+            "columnName": "characterCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamCvId",
+            "columnName": "teamCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "characterCvId",
+            "teamCvId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_character_team_teamCvId",
+            "unique": false,
+            "columnNames": [
+              "teamCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_character_team_teamCvId` ON `${TABLE_NAME}` (`teamCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          },
+          {
+            "table": "team",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "character_synergy",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lowCvId` INTEGER NOT NULL, `highCvId` INTEGER NOT NULL, PRIMARY KEY(`lowCvId`, `highCvId`), FOREIGN KEY(`lowCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`highCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "lowCvId",
+            "columnName": "lowCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "highCvId",
+            "columnName": "highCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "lowCvId",
+            "highCvId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_character_synergy_highCvId",
+            "unique": false,
+            "columnNames": [
+              "highCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_character_synergy_highCvId` ON `${TABLE_NAME}` (`highCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "lowCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          },
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "highCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "story_arc",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cvId` INTEGER NOT NULL, `name` TEXT NOT NULL, `deck` TEXT, `numIssues` INTEGER NOT NULL, `difficulty` REAL NOT NULL, `imageUrl` TEXT, `story` TEXT, PRIMARY KEY(`cvId`))",
+        "fields": [
+          {
+            "fieldPath": "cvId",
+            "columnName": "cvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deck",
+            "columnName": "deck",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "numIssues",
+            "columnName": "numIssues",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "difficulty",
+            "columnName": "difficulty",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "story",
+            "columnName": "story",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "cvId"
+          ]
+        }
+      },
+      {
+        "tableName": "character_unlock",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterCvId` INTEGER NOT NULL, `arcCvId` INTEGER NOT NULL, PRIMARY KEY(`characterCvId`, `arcCvId`), FOREIGN KEY(`characterCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`arcCvId`) REFERENCES `story_arc`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "characterCvId",
+            "columnName": "characterCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "arcCvId",
+            "columnName": "arcCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "characterCvId",
+            "arcCvId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_character_unlock_arcCvId",
+            "unique": false,
+            "columnNames": [
+              "arcCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_character_unlock_arcCvId` ON `${TABLE_NAME}` (`arcCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          },
+          {
+            "table": "story_arc",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "arcCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "seed_meta",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` TEXT NOT NULL, `value` TEXT NOT NULL, PRIMARY KEY(`key`))",
+        "fields": [
+          {
+            "fieldPath": "key",
+            "columnName": "key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "key"
+          ]
+        }
+      },
+      {
+        "tableName": "game_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `coinBalance` INTEGER NOT NULL, `xpTotal` INTEGER NOT NULL, `seedCompleted` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coinBalance",
+            "columnName": "coinBalance",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "xpTotal",
+            "columnName": "xpTotal",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seedCompleted",
+            "columnName": "seedCompleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "user_roster",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterCvId` INTEGER NOT NULL, `availableAt` INTEGER NOT NULL, `recruitedAt` INTEGER NOT NULL, FOREIGN KEY(`characterCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterCvId",
+            "columnName": "characterCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "availableAt",
+            "columnName": "availableAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recruitedAt",
+            "columnName": "recruitedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_user_roster_characterCvId",
+            "unique": true,
+            "columnNames": [
+              "characterCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_user_roster_characterCvId` ON `${TABLE_NAME}` (`characterCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "mission_result",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `arcCvId` INTEGER NOT NULL, `teamStrength` REAL NOT NULL, `difficulty` REAL NOT NULL, `chance` REAL NOT NULL, `rollValue` REAL NOT NULL, `success` INTEGER NOT NULL, `xpEarned` INTEGER NOT NULL, `coinsEarned` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, FOREIGN KEY(`arcCvId`) REFERENCES `story_arc`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "arcCvId",
+            "columnName": "arcCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamStrength",
+            "columnName": "teamStrength",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "difficulty",
+            "columnName": "difficulty",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chance",
+            "columnName": "chance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rollValue",
+            "columnName": "rollValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "success",
+            "columnName": "success",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "xpEarned",
+            "columnName": "xpEarned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coinsEarned",
+            "columnName": "coinsEarned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_mission_result_arcCvId",
+            "unique": false,
+            "columnNames": [
+              "arcCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_mission_result_arcCvId` ON `${TABLE_NAME}` (`arcCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "story_arc",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "arcCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "mission_result_hero",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`missionResultId` INTEGER NOT NULL, `characterCvId` INTEGER NOT NULL, PRIMARY KEY(`missionResultId`, `characterCvId`), FOREIGN KEY(`missionResultId`) REFERENCES `mission_result`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`characterCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "missionResultId",
+            "columnName": "missionResultId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterCvId",
+            "columnName": "characterCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "missionResultId",
+            "characterCvId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_mission_result_hero_characterCvId",
+            "unique": false,
+            "columnNames": [
+              "characterCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_mission_result_hero_characterCvId` ON `${TABLE_NAME}` (`characterCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "mission_result",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "missionResultId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "shop_offer",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dayKey` INTEGER NOT NULL, `characterCvId` INTEGER NOT NULL, `rarity` TEXT NOT NULL, `price` INTEGER NOT NULL, `purchased` INTEGER NOT NULL, FOREIGN KEY(`characterCvId`) REFERENCES `character`(`cvId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dayKey",
+            "columnName": "dayKey",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterCvId",
+            "columnName": "characterCvId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rarity",
+            "columnName": "rarity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "purchased",
+            "columnName": "purchased",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_shop_offer_characterCvId",
+            "unique": false,
+            "columnNames": [
+              "characterCvId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shop_offer_characterCvId` ON `${TABLE_NAME}` (`characterCvId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "character",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterCvId"
+            ],
+            "referencedColumns": [
+              "cvId"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cb08d28ed4c07772a0baf3bfc1601d51')"
+    ]
+  }
+}

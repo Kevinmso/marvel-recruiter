@@ -25,9 +25,9 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 ## Fase 3 — Rede + Seed (RF-01/02/03)
 - [x] T-15: Configurar Ktor Client + kotlinx.serialization pra Comic Vine — `data/remote/ComicVineHttpClient.kt` (CIO, ContentNegotiation, User-Agent, api_key+format) + `ComicVineResponse<T>` envelope + Koin + `ComicVineHttpClientTest` (3 casos, MockEngine)
 - [x] T-16: Buscar personagens curados (`/character/4005-{id}/`) — `CharacterDto`/`NamedRef`/`ImageDto` + `ComicVineApi.character()` + Koin + `ComicVineApiTest` (4 casos, fixture JSON real)
-- [ ] T-17: Buscar arcos curados + issues (`/story_arc/{id}/`)
-- [ ] T-18: Resolver unlock via `/issue/4000-{id}/` → `character_credits` (RF-19). Definir mitigação do custo de chamadas (ver plan.md: parar quando todos os curados achados / amostrar / etc.)
-- [ ] T-19: Rotina de seed completa (roda 1x, popula Room, congela constantes de normalização — constitution.md C-08)
+- [x] T-17: Buscar arcos curados + issues (`/story_arc/{id}/`) — `StoryArcDto` + `ComicVineApi.storyArc()` + `StoryArcApiTest` (2 casos)
+- [x] T-18: Resolver unlock via `/issue/4000-{id}/` → `character_credits` (RF-19). Definir mitigação do custo de chamadas (ver plan.md: parar quando todos os curados achados / amostrar / etc.)
+- [x] T-19: Rotina de seed completa (roda 1x, popula Room, congela constantes de normalização — constitution.md C-08) — `RosterFetcher` + `RosterSeeder` (transação única), validado no celular
 
 ## Fase 4 — UI (Compose)
 - [ ] T-19b: Navegação (Navigation Compose) + Tela 0 de erro de seed (RF-20) + gate de loading enquanto o seed roda
@@ -41,3 +41,10 @@ Ordem sugerida. Cada tarefa é atômica o bastante pra pedir de uma vez pra um a
 - [ ] T-25: Calibrar constantes (k, α, β, γ, custo de pacote, constante de cooldown — valores iniciais em spec.md) jogando de verdade
 - [ ] T-26: Completar roster de personagens e arcos curados em `specs/roster.md`, depois atualizar `specs/constantes-normalizacao.md` com os valores finais
 - [ ] T-27: Revisão manual de issues com nome/idioma estrangeiro na curadoria final
+## Fase 6 — Revisão de jogabilidade e features (pós-entrega do núcleo)
+- [x] T-30: Equilíbrio: chance pela razão (ForçaTime−Dif)/(ForçaTime+Dif), k=0,4; média do time (spec RF-09/RF-12)
+- [x] T-31: Renomear "Roster" para "Equipe" (RF-26)
+- [x] T-32: Minijogo de timing na montagem (RF-23)
+- [x] T-33: Sequência de vitórias com multiplicador (RF-24)
+- [x] T-34: Imagem dos arcos (RF-25)
+- [ ] T-35: Regenerar capturas Roborazzi e validar no celular o fluxo completo

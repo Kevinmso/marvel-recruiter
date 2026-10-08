@@ -18,7 +18,7 @@ data class CharacterDto(
 )
 
 @Serializable
-data class NamedRef(val id: Long, val name: String)
+data class NamedRef(val id: Long, val name: String? = null)
 
 @Serializable
 data class ImageDto(

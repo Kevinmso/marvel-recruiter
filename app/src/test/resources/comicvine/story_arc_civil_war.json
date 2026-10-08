@@ -1,0 +1,20 @@
+{
+  "error": "OK",
+  "limit": 1,
+  "offset": 0,
+  "number_of_page_results": 1,
+  "number_of_total_results": 1,
+  "status_code": 1,
+  "results": {
+    "id": 40615,
+    "name": "Civil War",
+    "deck": "The Superhuman Registration Act divides Marvel's heroes into two camps.",
+    "publisher": { "id": 31, "name": "Marvel" },
+    "issues": [
+      { "id": 106921, "name": "The Amazing Spider-Man #529" },
+      { "id": 106922, "name": "Civil War #1" },
+      { "id": 106923, "name": "Civil War #2" },
+      { "id": 106924, "name": "Civil War #3" }
+    ]
+  }
+}

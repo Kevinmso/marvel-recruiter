@@ -30,3 +30,20 @@ Os valores abaixo vêm do **conjunto de teste de 5 heróis e 5 arcos** (testados
 2. Pegar o menor e maior valor real de `p`, `x`, `y` entre todos os personagens/arcos curados.
 3. Substituir os valores "TODO" acima.
 4. Commitar esse arquivo junto com o commit que popula o banco pela primeira vez — ele é a fonte da verdade dessas constantes, não o banco em si (o banco pode ser apagado/recriado; este arquivo não).
+## Valores finais do roster (T-26, medidos com a API em 2026-10-03)
+| Constante | Valor final | Fonte |
+|---|---|---|
+| `pMin` / `pMax` | 6 / 58 | menor e maior nº de poderes entre os 24 curados |
+| `xMin` / `xMax` | 337 / 16949 | menor e maior `count_of_issue_appearances` |
+| `yMin` / `yMax` | 5 / 123 | menor e maior nº de issues limpas dos 21 arcos |
+
+Esses valores são gravados em `seed_meta` no seed (RF-03). O arquivo acima é a referência humana; o código lê do roster.
+
+## Valores do roster de 50 personagens (snapshot de 2026-10-03)
+| Constante | Valor | Fonte |
+|---|---|---|
+| `pMin` / `pMax` | 6 / 58 | menor e maior nº de poderes entre os 50 |
+| `xMin` / `xMax` | 337 / 18141 | menor e maior `count_of_issue_appearances` (Homem-Aranha) |
+| `yMin` / `yMax` | 5 / 123 | menor e maior nº de issues limpas dos 21 arcos |
+
+Estes valores são calculados no seed a partir do snapshot (`assets/roster_snapshot.json`) e gravados em `seed_meta`.

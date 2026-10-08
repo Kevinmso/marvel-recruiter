@@ -18,7 +18,7 @@ class MissionRewardTest {
 
     @Test
     fun `arredonda para o inteiro mais proximo`() {
-        // 5 * 12.7 = 63.5 -> 64
+        // 5 * 12,7 = 63,5 -> 64
         val reward = missionReward(difficulty = 12.7, success = true)
         assertEquals(127, reward.xp)
         assertEquals(64, reward.coins)

@@ -21,10 +21,42 @@ Lista de personagens e arcos que compõem o jogo. `cv_id` é o identificador na 
 
 *(nº de poderes reconfirmado com chamada real — a lista não vinha truncada; Wolverine é 24 e Carol 30, não "22")*
 
+### Expansão para 50 (cv_id confirmado por busca; nº de aparições medido, poderes ainda não)
+| Nome | `cv_id` | `count_of_issue_appearances` |
+|---|---|---|
+| Thanos | 7607 | 1327 |
+| Doutor Destino | 1468 | 4072 |
+| Loki | 4324 | 2338 |
+| Caveira Vermelha | 2250 | 1443 |
+| Venom | 1486 | 3017 |
+| Norman Osborn (Duende Verde) | 58812 | 2689 |
+| Apocalipse | 7612 | 1938 |
+| Galactus | 2149 | 1848 |
+| Homem-Aranha | 1443 | 18141 |
+| Doutor Estranho | 1456 | 5203 |
+| Punho de Ferro | 1492 | 2340 |
+| Demolidor | 24694 | 4992 |
+| Senhor das Estrelas | 10957 | 914 |
+| Gamora | 6806 | 945 |
+| Drax | 6807 | 1005 |
+| Rocket Raccoon | 32814 | 1114 |
+| Groot | 24341 | 893 |
+| Senhor Fantástico | 2151 | 7246 |
+| Mulher Invisível | 2190 | 6449 |
+| Tocha Humana | 2120 | 7172 |
+| Coisa | 2114 | 8379 |
+| Homem de Gelo | 1464 | 8273 |
+| Sabretooth | 4563 | 3714 |
+| Deadpool | 7606 | 3613 |
+| Surfista Prateado | 2502 | 2489 |
+| Motoqueiro Fantasma (Blaze) | 6108 | 1126 |
+
+*Status: o teste ao vivo (`LiveRosterTest`) ainda não rodou — a build do módulo app falha em `ui/screens/PokedexScreen.kt:182` (`luminance` sem import). Os limites p/x/y do roster de 50 ficam pendentes até o teste passar.*
+
 ### Ainda sem `cv_id` confirmado (TODO — buscar via `/characters/?filter=name:...`)
 **Avengers**: Thor, Hulk, Viúva Negra, Gavião Arqueiro, Visão, Feiticeira Escarlate, Pantera Negra, Homem-Formiga, Vespa
 
-**X-Men**: Ciclope, Fênix (Jean Grey), Tempestade, Professor X, Gambit, Noturno, Vampira, Fera, Magneto, Mística
+**X-Men**: Ciclope, Fênix (Jean Grey), Tempestade, Professor X, Gambit, Noturno, Kitty Pryde, Fera, Magneto, Mística
 
 ## Arcos (missões)
 

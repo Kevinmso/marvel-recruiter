@@ -9,5 +9,7 @@ data class StoryArcEntity(
     val name: String,
     val deck: String?,
     val numIssues: Int,     // y limpo (pós-curadoria) — RF-11
-    val difficulty: Double  // RF-11, congelada (C-08)
+    val difficulty: Double,
+    val imageUrl: String? = null,
+    val story: String? = null,
 )

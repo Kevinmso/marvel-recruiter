@@ -1,5 +1,10 @@
 package com.marvel.recruiter.game
 
+const val SYNERGY_PER_PAIR = 4
+const val SYNERGY_CAP = 12
+const val FACTION_PER_HERO = 1
+const val FACTION_CAP = 5
+
 data class HeroStats(
     val cvId: Long,
     val adjustedPower: Double,
@@ -22,7 +27,7 @@ fun synergyBonus(team: List<HeroStats>, synergies: Set<SynergyPair>): Int {
             if (pair in synergies) count++
         }
     }
-    return count * 10
+    return count * SYNERGY_PER_PAIR
 }
 
 fun factionBonus(team: List<HeroStats>): Int {
@@ -32,12 +37,12 @@ fun factionBonus(team: List<HeroStats>): Int {
     }
     val max = counts.values.maxOrNull() ?: 0
     if (max <= 1) return 0
-    return max * 3
+    return minOf(max * FACTION_PER_HERO, FACTION_CAP)
 }
 
 fun teamStrength(team: List<HeroStats>, synergies: Set<SynergyPair>): Double {
-    val base = team.sumOf { 0.6 * it.adjustedPower + 0.4 * it.veterancy }
-    val synergy = minOf(synergyBonus(team, synergies), 40)
+    val base = team.sumOf { 0.6 * it.adjustedPower + 0.4 * it.veterancy } / team.size
+    val synergy = minOf(synergyBonus(team, synergies), SYNERGY_CAP)
     val faction = factionBonus(team)
     return base + synergy + faction
 }

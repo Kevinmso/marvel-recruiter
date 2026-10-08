@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Splash: fundo vermelho + logo; depois troca pro tema do app -->
+    <style name="Theme.Recruiter.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/marvel_red</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Recruiter</item>
+    </style>
+
     <style name="Theme.Recruiter" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

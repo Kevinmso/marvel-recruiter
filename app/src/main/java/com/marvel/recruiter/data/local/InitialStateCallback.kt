@@ -11,7 +11,7 @@ import androidx.sqlite.execSQL
 object InitialStateCallback : RoomDatabase.Callback() {
     override fun onCreate(connection: SQLiteConnection) {
         connection.execSQL(
-            "INSERT INTO game_state (id, coinBalance, xpTotal, seedCompleted) VALUES (1, 300, 0, 0)",
+            "INSERT INTO game_state (id, coinBalance, xpTotal, seedCompleted, packsOpened) VALUES (1, 300, 0, 0, 0)",
         )
     }
 }

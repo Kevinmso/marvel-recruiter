@@ -6,6 +6,7 @@ import com.marvel.recruiter.data.local.dao.CharacterDao
 import com.marvel.recruiter.data.local.dao.GameStateDao
 import com.marvel.recruiter.data.local.dao.MissionResultDao
 import com.marvel.recruiter.data.local.dao.SeedMetaDao
+import com.marvel.recruiter.data.local.dao.ShopDao
 import com.marvel.recruiter.data.local.dao.StoryArcDao
 import com.marvel.recruiter.data.local.dao.UserRosterDao
 import com.marvel.recruiter.data.local.entity.CharacterEntity
@@ -16,6 +17,7 @@ import com.marvel.recruiter.data.local.entity.GameStateEntity
 import com.marvel.recruiter.data.local.entity.MissionResultEntity
 import com.marvel.recruiter.data.local.entity.MissionResultHeroEntity
 import com.marvel.recruiter.data.local.entity.SeedMetaEntity
+import com.marvel.recruiter.data.local.entity.ShopOfferEntity
 import com.marvel.recruiter.data.local.entity.StoryArcEntity
 import com.marvel.recruiter.data.local.entity.TeamEntity
 import com.marvel.recruiter.data.local.entity.UserRosterEntity
@@ -33,8 +35,9 @@ import com.marvel.recruiter.data.local.entity.UserRosterEntity
         UserRosterEntity::class,
         MissionResultEntity::class,
         MissionResultHeroEntity::class,
+        ShopOfferEntity::class,
     ],
-    version = 1,
+    version = 5,
     exportSchema = true,
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -45,6 +48,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userRosterDao(): UserRosterDao
     abstract fun missionResultDao(): MissionResultDao
     abstract fun seedMetaDao(): SeedMetaDao
+    abstract fun shopDao(): ShopDao
 
     companion object {
         const val NAME = "marvel_recruiter.db"

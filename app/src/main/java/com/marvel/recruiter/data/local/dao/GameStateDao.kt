@@ -6,7 +6,6 @@ import androidx.room.Upsert
 import com.marvel.recruiter.data.local.entity.GameStateEntity
 import kotlinx.coroutines.flow.Flow
 
-/** Estado do jogo — linha única (id = 1). Criada no onCreate (RF-21). */
 @Dao
 interface GameStateDao {
 
